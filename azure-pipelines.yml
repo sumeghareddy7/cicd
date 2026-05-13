@@ -5,16 +5,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: UsePythonVersion@0
+- task: Docker@2
   inputs:
-    versionSpec: '3.11'
-  displayName: 'Use Python 3.11'
-
-- script: |
-    python --version
-    pip install flask
-  displayName: 'Install dependencies'
-
-- script: |
-    python app.py
-  displayName: 'Run Python app'
+    command: build
+    Dockerfile: '**/Dockerfile'
+    repository: cicd-demo
+    tags: latest
